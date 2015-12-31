@@ -18,12 +18,25 @@ The basic workflow is:
 import NotificationSettings, {Action, Category} from 'react-native-notification-settings'
 
 // Create an "upvote" action that will display a button when a notification is swiped
-let action1 = new Action({
+let upvoteButton = new Action({
   activationMode: 'background',
   title: 'Upvote',
-  identifier: 'UPVOTE_ACTION',
+  identifier: 'UPVOTE_ACTION', // necessary?
   destructive: false,
-  authenticationRequired: false
+  authenticationRequired: false,
+  handleLocal: () => console.info('local upvote button pressed'),
+  handleRemote: () => console.info('remote upvote button pressed'),
+});
+
+// Create a "comment" button that will display a text input when the button is pressed
+let replyTextButton = new Action({
+  activationMode: 'background',
+  title: 'Reply',
+  identifier: 'REPLY_ACTION', // necessary?
+  destructive: false,
+  authenticationRequired: false,
+  handleLocal: (text) => console.info('local reply typed', text),
+  handleRemote: (text) => console.info('remote reply typed', text)
 });
 
 // Create a category containing our upvote action
@@ -40,7 +53,12 @@ NotificationSettings.updateCategories({
 ```
 
 # Action options
-(sweet table here)
+
+* `activationMode` - What should iOS do with this app when this action is pressed? [[apple docs](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIUserNotificationAction_class/index.html#//apple_ref/c/tdef/UIUserNotificationActivationMode)]
+  * `foreground` (default) - Bring the app into the foreground
+  * `background` - Launch the app in the background
+* `title` - string title for the action button [[apple docs](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIUserNotificationAction_class/index.html#//apple_ref/c/tdef/UIUserNotificationActionBehavior)]
+* `identifier` - [String] identifier for the action.  is this necessary????
 
 # Category options
 (sweet table here)
