@@ -1,4 +1,4 @@
-# react-native-ios-notification-settings
+# react-native-ios-notification-actions
 
 # tl;dr
 
@@ -18,10 +18,10 @@ The basic workflow is:
 
 # Example
 ```javascript
-import NotificationSettings, {Action, Category} from 'react-native-notification-settings'
+import NotificationActions from 'react-native-notification-actions'
 
 // Create an "upvote" action that will display a button when a notification is swiped
-let upvoteButton = new NotificationSettings.Action({
+let upvoteButton = new NotificationActions.Action({
   activationMode: 'background',
   title: 'Upvote',
   identifier: 'UPVOTE_ACTION', // necessary?
@@ -32,7 +32,7 @@ let upvoteButton = new NotificationSettings.Action({
 });
 
 // Create a "comment" button that will display a text input when the button is pressed
-let commentTextButton = new NotificationSettings.Action({
+let commentTextButton = new NotificationActions.Action({
   activationMode: 'background',
   title: 'Reply',
   identifier: 'REPLY_ACTION', // necessary?
@@ -43,14 +43,14 @@ let commentTextButton = new NotificationSettings.Action({
 });
 
 // Create a category containing our two actions
-let myCategory = new NotificationSettings.Category({
+let myCategory = new NotificationActions.Category({
   identifier: 'something_happened',
   actions: [upvoteButton, commentTextButton],
   forContext: 'default'
 });
 
 // ** important ** update the categories
-NotificationSettings.updateCategories([myCategory]);
+NotificationActions.updateCategories([myCategory]);
 ```
 
 # Action options
