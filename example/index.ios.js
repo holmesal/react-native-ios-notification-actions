@@ -7,12 +7,60 @@
 var React = require('react-native');
 var {
   AppRegistry,
+  PushNotificationIOS,
   StyleSheet,
   Text,
   View,
 } = React;
+var NotificationActions = require('./RNNotificationActions/NotificationActionsIOS.js');
 
 var ActionExamples = React.createClass({
+
+  componentDidMount: function() {
+    // Request push notification permissions
+    PushNotificationIOS.requestPermissions();
+
+    // Create some actions and categories
+    // Create an "upvote" action that will display a button when a notification is swiped
+    let upvoteButton = new NotificationActions.Action({
+      activationMode: 'background',
+      title: 'Upvote',
+      identifier: 'UPVOTE_ACTION', // necessary?
+      destructive: false,
+      authenticationRequired: false
+    }, (source, done) => {
+      console.info('upvote button pressed from source: ', source);
+      done(); //important!
+    });
+
+    // Create a "comment" button that will display a text input when the button is pressed
+    let commentTextButton = new NotificationActions.Action({
+      activationMode: 'background',
+      title: 'Reply',
+      behavior: 'textInput',
+      identifier: 'REPLY_ACTION', // necessary?
+      destructive: false,
+      authenticationRequired: false
+    }, (source, done, text) => {
+      console.info('reply typed via notification from source: ', source, ' with text: ', text);
+      done(); //important!
+    });
+
+    // Create a category containing our two actions
+    let myCategory = new NotificationActions.Category({
+      identifier: 'something_happened',
+      actions: [upvoteButton, commentTextButton],
+      forContext: 'default'
+    });
+
+    NotificationActions.updateCategories([myCategory]);
+
+    setTimeout(() => {
+      console.info('sending local notification!');
+      PushNotificationIOS.presentLocalNotification({alertBody: 'heyoooo!', category: 'something_happened'});
+    }, 2000)
+  },
+
   render: function() {
     return (
       <View style={styles.container}>
