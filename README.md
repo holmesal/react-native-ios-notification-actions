@@ -24,22 +24,21 @@ import NotificationActions from 'react-native-notification-actions'
 let upvoteButton = new NotificationActions.Action({
   activationMode: 'background',
   title: 'Upvote',
-  identifier: 'UPVOTE_ACTION', // necessary?
-  destructive: false,
-  authenticationRequired: false,
-  handleLocal: () => console.info('local upvote button pressed'),
-  handleRemote: () => console.info('remote upvote button pressed'),
+  identifier: 'UPVOTE_ACTION'
+}, (source, done) => {
+  console.info('upvote button pressed from source: ', source);
+  done(); //important!
 });
 
 // Create a "comment" button that will display a text input when the button is pressed
 let commentTextButton = new NotificationActions.Action({
   activationMode: 'background',
   title: 'Reply',
-  identifier: 'REPLY_ACTION', // necessary?
-  destructive: false,
-  authenticationRequired: false,
-  handleLocal: (text) => console.info('local reply typed', text),
-  handleRemote: (text) => console.info('remote reply typed', text)
+  behavior: 'textInput',
+  identifier: 'REPLY_ACTION'
+}, (source, done, text) => {
+  console.info('reply typed via notification from source: ', source, ' with text: ', text);
+  done(); //important!
 });
 
 // Create a category containing our two actions
@@ -48,6 +47,8 @@ let myCategory = new NotificationActions.Category({
   actions: [upvoteButton, commentTextButton],
   forContext: 'default'
 });
+
+NotificationActions.updateCategories([myCategory]);
 
 // ** important ** update the categories
 NotificationActions.updateCategories([myCategory]);

@@ -25,9 +25,7 @@ var ActionExamples = React.createClass({
     let upvoteButton = new NotificationActions.Action({
       activationMode: 'background',
       title: 'Upvote',
-      identifier: 'UPVOTE_ACTION', // necessary?
-      destructive: false,
-      authenticationRequired: false
+      identifier: 'UPVOTE_ACTION'
     }, (source, done) => {
       console.info('upvote button pressed from source: ', source);
       done(); //important!
@@ -38,9 +36,7 @@ var ActionExamples = React.createClass({
       activationMode: 'background',
       title: 'Reply',
       behavior: 'textInput',
-      identifier: 'REPLY_ACTION', // necessary?
-      destructive: false,
-      authenticationRequired: false
+      identifier: 'REPLY_ACTION'
     }, (source, done, text) => {
       console.info('reply typed via notification from source: ', source, ' with text: ', text);
       done(); //important!

@@ -114,11 +114,21 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
 
 + (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler;
 {
-  NSLog(@"got local notification action!");
+  [self emitNotificationActionForIdentifier:identifier source:@"local" responseInfo:responseInfo];
+  completionHandler();
+}
++ (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
+{
+  [self emitNotificationActionForIdentifier:identifier source:@"remote" responseInfo:responseInfo];
+  completionHandler();
+}
+
++ (void)emitNotificationActionForIdentifier:(NSString *)identifier source:(NSString *)source responseInfo:(NSDictionary *)responseInfo
+{
   NSMutableDictionary *info = [[NSMutableDictionary alloc] initWithDictionary:@{
-                          @"identifier": identifier,
-                          @"source": @"local"
-                          }
+      @"identifier": identifier,
+      @"source": @"local"
+      }
   ];
   NSString *text = [responseInfo objectForKey:UIUserNotificationActionResponseTypedTextKey];
   if (text != NULL) {
@@ -127,7 +137,6 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
   [[NSNotificationCenter defaultCenter] postNotificationName:RNNotificationActionReceived
                                                       object:self
                                                     userInfo: info];
-//  [self emitActionForIdentifier:identifier source:@"local" responseInfo:responseInfo completionHandler:completionHandler];
 }
 
 - (void)handleNotificationActionReceived:(NSNotification *)notification
@@ -135,11 +144,5 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
   [_bridge.eventDispatcher sendAppEventWithName:@"notificationActionReceived"
                                               body:notification.userInfo];
 }
-
-//- (void)emitActionForIdentifier:(NSString *)identifier source:(NSString *)source responseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
-//{
-//  NSLog(@"emitting action!");
-//
-//}
 
 @end
