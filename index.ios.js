@@ -4,7 +4,7 @@ const {RNNotificationActions} = NativeModules;
 let actions = {};
 
 todoComplete = () => {
-  console.warn('TODO - implement complete callbacks for objective-c');
+  console.info('TODO - implement complete callbacks for objective-c (the callback was already called in this case)');
 };
 
 export class Action {
@@ -46,6 +46,7 @@ export const updateCategories = (categories) => {
   RNNotificationActions.updateCategories(cats);
   // Re-update when permissions change
   NativeAppEventEmitter.addListener('remoteNotificationsRegistered', () => {
+    console.info('updating notification categories in response to permission change');
     RNNotificationActions.updateCategories(cats);
   });
 };

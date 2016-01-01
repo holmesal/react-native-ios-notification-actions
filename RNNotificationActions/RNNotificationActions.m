@@ -37,7 +37,7 @@ RCT_EXPORT_MODULE();
 
 - (id)init
 {
-    NSLog(@"initializing!!!");
+//    NSLog(@"initializing!!!");
     if (self = [super init]) {
         self.completeCallbacks = [[NSMutableDictionary alloc] init];
         return self;
@@ -78,7 +78,7 @@ RCT_EXPORT_MODULE();
 
 - (UIUserNotificationCategory *)categoryFromJSON:(NSDictionary *)json
 {
-  RCTLogInfo(@"hello from category: %@", json);
+//  RCTLogInfo(@"hello from category: %@", json);
   UIMutableUserNotificationCategory *category;
   category = [[UIMutableUserNotificationCategory alloc] init];
   [category setIdentifier:[RCTConvert NSString:json[@"identifier"]]];
@@ -109,7 +109,7 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
   for (NSDictionary *categoryJSON in json) {
     [categories addObject:[self categoryFromJSON:categoryJSON]];
   }
-  NSLog(@"got categories, %@", categories);
+//  NSLog(@"got categories, %@", categories);
   
   // Get the current types
   UIUserNotificationSettings *settings;
