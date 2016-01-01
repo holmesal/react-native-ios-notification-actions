@@ -35,6 +35,17 @@ RCT_EXPORT_MODULE();
 
 @synthesize bridge = _bridge;
 
+- (id)init
+{
+    NSLog(@"initializing!!!");
+    if (self = [super init]) {
+        self.completeCallbacks = [[NSMutableDictionary alloc] init];
+        return self;
+    } else {
+        return nil;
+    }
+}
+
 - (void)dealloc
 {
   [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -108,6 +119,8 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
   [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:types categories:[NSSet setWithArray:categories]]];
 }
 
+// Given a identifier and completion handler, store the associated block
+// TODO
 
 
 // Handle notifications received by the app delegate and passed to the following class methods
