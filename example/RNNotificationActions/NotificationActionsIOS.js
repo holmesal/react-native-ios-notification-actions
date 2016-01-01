@@ -22,7 +22,6 @@ export class Action {
       }
     });
   }
-
 }
 
 export class Category {
@@ -45,6 +44,10 @@ export const updateCategories = (categories) => {
   });
   console.info('updating categories', cats);
   RNNotificationActions.updateCategories(cats);
+  // Re-update when permissions change
+  NativeAppEventEmitter.addListener('remoteNotificationsRegistered', () => {
+    RNNotificationActions.updateCategories(cats);
+  });
 };
 
 

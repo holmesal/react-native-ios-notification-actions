@@ -2,7 +2,6 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
-'use strict';
 
 var React = require('react-native');
 var {
@@ -24,7 +23,9 @@ var ActionExamples = React.createClass({
     // Create an "upvote" action that will display a button when a notification is swiped
     let upvoteButton = new NotificationActions.Action({
       activationMode: 'background',
-      title: 'Upvote',
+      title: String.fromCodePoint(0x1F44D),
+      //title: String.fromCodePoint(0x2764),
+      //title: 'Fave',
       identifier: 'UPVOTE_ACTION'
     }, (source, done) => {
       console.info('upvote button pressed from source: ', source);
@@ -34,7 +35,8 @@ var ActionExamples = React.createClass({
     // Create a "comment" button that will display a text input when the button is pressed
     let commentTextButton = new NotificationActions.Action({
       activationMode: 'background',
-      title: 'Reply',
+      title: String.fromCodePoint(0x1F4AC),
+      //title: 'Comment',
       behavior: 'textInput',
       identifier: 'REPLY_ACTION'
     }, (source, done, text) => {
@@ -45,7 +47,7 @@ var ActionExamples = React.createClass({
     // Create a category containing our two actions
     let myCategory = new NotificationActions.Category({
       identifier: 'something_happened',
-      actions: [upvoteButton, commentTextButton],
+      actions: [commentTextButton, upvoteButton],
       forContext: 'default'
     });
 
@@ -53,7 +55,7 @@ var ActionExamples = React.createClass({
 
     setTimeout(() => {
       console.info('sending local notification!');
-      PushNotificationIOS.presentLocalNotification({alertBody: 'heyoooo!', category: 'something_happened'});
+      PushNotificationIOS.presentLocalNotification({alertBody: ' ', category: 'something_happened', alertAction: 'comment or like'});
     }, 2000)
   },
 
