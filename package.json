@@ -1,0 +1,27 @@
+{
+  "name": "react-native-ios-notification-actions",
+  "version": "0.0.1",
+  "description": "Swipe + text input actions for ios push notifications",
+  "main": "RNNotificationActions/NotificationActionsIOS.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holmesal/react-native-ios-notification-actions.git"
+  },
+  "keywords": [
+    "react-component",
+    "react-native",
+    "ios"
+  ],
+  "author": "Alonso Holmes <hello@alonso.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/holmesal/react-native-ios-notification-actions/issues"
+  },
+  "homepage": "https://github.com/holmesal/react-native-ios-notification-actions#readme"
+}

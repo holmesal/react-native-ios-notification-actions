@@ -11,7 +11,8 @@ var {
   Text,
   View,
 } = React;
-var NotificationActions = require('./RNNotificationActions/NotificationActionsIOS.js');
+//var NotificationActions = require('../RNNotificationActions/NotificationActionsIOS');
+var NotificationActions = require('react-native-ios-notification-actions');
 
 var ActionExamples = React.createClass({
 
