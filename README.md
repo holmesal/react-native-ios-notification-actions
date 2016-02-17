@@ -16,8 +16,33 @@ The basic workflow is:
 3. (optional) Implement some appdelegate methods to respond to actions.
 4. Show a local (or remote) notification, and associate it with the category from (2) to show your actions.
 
+# Install
+
+### rnpm (preferred)
+`rnpm install react-native-ios-push-notification-actions`
+
+### Manual
+1. `npm install react-native-ios-push-notification-actions`
+2. Drag `./RNNotificationActions/RNNotificationActions.xcodeproj` into your project.
+3. Add `libRNNotificationActions.a` to your `Link Binary With Libraries` build phase
+
 # Getting Started
 1. Follow the instructions [here](https://facebook.github.io/react-native/docs/pushnotificationios.html) to set up push notifications in your app.
+2. In `AppDelegate.m`:
+```objective-c
+// Import 'RNNotificationActions.h' at top.
+#import "RNNotificationActions.h"
+
+// Add support for push notification actions (optional)
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(nullable NSString *)identifier forLocalNotification:(nonnull UILocalNotification *)notification withResponseInfo:(nonnull NSDictionary *)responseInfo completionHandler:(nonnull void (^)())completionHandler
+{
+    NSLog(@"got local notification!");
+    [RNNotificationActions application:application handleActionWithIdentifier:identifier forLocalNotification:notification withResponseInfo:responseInfo completionHandler:completionHandler];
+}
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
+{
+  [RNNotificationActions application:application handleActionWithIdentifier:identifier forRemoteNotification:userInfo withResponseInfo:responseInfo completionHandler:completionHandler];
+}
 
 # Example
 ```javascript
