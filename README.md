@@ -51,11 +51,25 @@ let myCategory = new NotificationActions.Category({
   forContext: 'default'
 });
 
-NotificationActions.updateCategories([myCategory]);
-
 // ** important ** update the categories
 NotificationActions.updateCategories([myCategory]);
 ```
+
+Then, when you present a local notification, you can simply use the same category name:
+```javascript
+import {PushNotificationIOS} from 'react-native';
+
+// Lock your screen before 5 seconds elapse!
+setTimeout(() => {
+    console.info('presenting local notification!');
+    PushNotificationIOS.presentLocalNotification({
+        alertBody: 'This is a local notification!',
+        category: 'something_happened'
+    });
+}, 5000);
+```
+
+The same goes for remote notifications - just include `{category: "your_category_name"}` in your push notification payload.
 
 # Action options
 
