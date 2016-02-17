@@ -1,5 +1,8 @@
 # react-native-ios-notification-actions
 
+![locked](https://zippy.gfycat.com/VibrantKaleidoscopicCrownofthornsstarfish.gif)
+![unlocked](https://fat.gfycat.com/GrandTightEquestrian.gif)
+
 # tl;dr
 
 Notification **Actions** allow the user to interact with the push notification. Those shiny buttons that show up when you swipe a notification to the left on your lock screen, or pull down a notification that appears on the top of the screen? Each one of those buttons is an action.
