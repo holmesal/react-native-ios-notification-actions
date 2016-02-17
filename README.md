@@ -43,6 +43,7 @@ The basic workflow is:
 {
   [RNNotificationActions application:application handleActionWithIdentifier:identifier forRemoteNotification:userInfo withResponseInfo:responseInfo completionHandler:completionHandler];
 }
+```
 
 # Example
 ```javascript
