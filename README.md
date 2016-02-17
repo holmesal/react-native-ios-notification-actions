@@ -18,10 +18,28 @@ The basic workflow is:
 
 # Getting Started
 1. Follow the instructions [here](https://facebook.github.io/react-native/docs/pushnotificationios.html) to set up push notifications in your app.
+2. Add the library + link it in Build Phases.
+3. Add boilerplate to `AppDelegate.m`
+```objective-c
+// Import 'RNNotificationActions.h' at top.
+#import "RNNotificationActions.h"
+
+// Add support for push notification actions (optional)
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(nullable NSString *)identifier forLocalNotification:(nonnull UILocalNotification *)notification withResponseInfo:(nonnull NSDictionary *)responseInfo completionHandler:(nonnull void (^)())completionHandler
+{
+    NSLog(@"got local notification!");
+    [RNNotificationActions application:application handleActionWithIdentifier:identifier forLocalNotification:notification withResponseInfo:responseInfo completionHandler:completionHandler];
+}
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
+{
+  [RNNotificationActions application:application handleActionWithIdentifier:identifier forRemoteNotification:userInfo withResponseInfo:responseInfo completionHandler:completionHandler];
+}
+
+```
 
 # Example
 ```javascript
-import NotificationActions from 'react-native-ios-notification-actions'
+import NotificationActions from 'react-native-notification-actions'
 
 // Create an "upvote" action that will display a button when a notification is swiped
 let upvoteButton = new NotificationActions.Action({
