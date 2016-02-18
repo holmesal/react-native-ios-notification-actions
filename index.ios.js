@@ -17,8 +17,8 @@ export class Action {
     actions[opts.identifier] = this;
     NativeAppEventEmitter.addListener('notificationActionReceived', (body) => {
       if (body.identifier === opts.identifier) {
-        console.info('got action interaction!', body);
-        onComplete(body.source, todoComplete, body.text);
+        //console.info('got action interaction!', body);
+        onComplete(body, todoComplete);
       }
     });
   }
@@ -34,19 +34,19 @@ export class Category {
 }
 
 export const updateCategories = (categories) => {
-  console.info('updating categories!', categories);
-  console.info(RNNotificationActions);
+  //console.info('updating categories!', categories);
+  //console.info(RNNotificationActions);
   //RNNotificationActions.logTest('heyooO!');
   let cats = categories.map((cat) => {
     return Object.assign({}, cat.opts, {
       actions: cat.opts.actions.map((action) => action.opts)
     })
   });
-  console.info('updating categories', cats);
+  //console.info('updating categories', cats);
   RNNotificationActions.updateCategories(cats);
   // Re-update when permissions change
   NativeAppEventEmitter.addListener('remoteNotificationsRegistered', () => {
-    console.info('updating notification categories in response to permission change');
+    //console.info('updating notification categories in response to permission change');
     RNNotificationActions.updateCategories(cats);
   });
 };

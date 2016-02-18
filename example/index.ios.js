@@ -27,8 +27,9 @@ var ActionExamples = React.createClass({
       //title: String.fromCodePoint(0x2764),
       //title: 'Fave',
       identifier: 'UPVOTE_ACTION'
-    }, (source, done) => {
-      console.info('upvote button pressed from source: ', source);
+    }, (res, done) => {
+      console.info('upvote button pressed with result: ', res);
+      console.info('source was: ', res.source);
       done(); //important!
     });
 
@@ -40,8 +41,8 @@ var ActionExamples = React.createClass({
       //title: 'Comment',
       behavior: 'textInput',
       identifier: 'REPLY_ACTION'
-    }, (source, done, text) => {
-      console.info('reply typed via notification from source: ', source, ' with text: ', text);
+    }, (res, done) => {
+      console.info('reply typed via notification from source: ', res.source, ' with text: ', res.text);
       done(); //important!
     });
 

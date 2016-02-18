@@ -54,8 +54,8 @@ let upvoteButton = new NotificationActions.Action({
   activationMode: 'background',
   title: 'Upvote',
   identifier: 'UPVOTE_ACTION'
-}, (source, done) => {
-  console.info('upvote button pressed from source: ', source);
+}, (res, done) => {
+  console.info('upvote button pressed with result: ', res);
   done(); //important!
 });
 
@@ -65,8 +65,8 @@ let commentTextButton = new NotificationActions.Action({
   title: 'Reply',
   behavior: 'textInput',
   identifier: 'REPLY_ACTION'
-}, (source, done, text) => {
-  console.info('reply typed via notification from source: ', source, ' with text: ', text);
+}, (res, done) => {
+  console.info('reply typed via notification from source: ', res.source, ' with text: ', res.text);
   done(); //important!
 });
 
@@ -123,7 +123,6 @@ The same goes for remote notifications - just include `{category: "your_category
 # TODO / help wanted
 * implement [action parameters](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIMutableUserNotificationAction_class/index.html#//apple_ref/occ/instp/UIMutableUserNotificationAction/parameters)
 * PR react-native to allow "category" key in local notification payloads (and maybe other keys as well)
-* Can we just use a string value for local notifications, or do we have to use the actual string variable as [suggested here](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIMutableUserNotificationCategory_class/index.html#//apple_ref/occ/instm/UIMutableUserNotificationCategory/identifier)?
 
 # More info
 [Nice overview of interactive notifications](https://nrj.io/simple-interactive-notifications-in-ios-8/)
