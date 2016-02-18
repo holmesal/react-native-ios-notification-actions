@@ -1,6 +1,6 @@
 {
   "name": "react-native-ios-notification-actions",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Swipe + text input actions for ios push notifications",
   "main": "index.ios.js",
   "directories": {
