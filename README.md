@@ -36,7 +36,7 @@ The basic workflow is:
 
 # Example
 ```javascript
-import NotificationActions from 'react-native-notification-actions'
+import NotificationActions from 'react-native-ios-notification-actions'
 
 // Create an "upvote" action that will display a button when a notification is swiped
 let upvoteButton = new NotificationActions.Action({
