@@ -24,7 +24,8 @@ The basic workflow is:
 ### Manual
 1. `npm install react-native-ios-notification-actions`
 2. Drag `./RNNotificationActions/RNNotificationActions.xcodeproj` into your project.
-3. Add `libRNNotificationActions.a` to your `Link Binary With Libraries` build phase
+3. Add `libRNNotificationActions.a` to your `Link Binary With Libraries` build phase.
+4. Add the following to you Header Search Paths: `$(SRCROOT)/../node_modules/react-native-ios-notification-actions/RNNotificationActions`, set the search to recursive.
 
 # Getting Started
 1. Follow the instructions [here](https://facebook.github.io/react-native/docs/pushnotificationios.html) to set up push notifications in your app.
