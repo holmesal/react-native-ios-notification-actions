@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D1251B41CB6130700A4BC7A /* RNNotificationActionsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D1251B31CB6130700A4BC7A /* RNNotificationActionsManager.m */; };
 		E2B7F23D1C36E76100945232 /* RNNotificationActions.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B7F23C1C36E76100945232 /* RNNotificationActions.m */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5D1251B21CB6130700A4BC7A /* RNNotificationActionsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNNotificationActionsManager.h; sourceTree = SOURCE_ROOT; };
+		5D1251B31CB6130700A4BC7A /* RNNotificationActionsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNNotificationActionsManager.m; sourceTree = SOURCE_ROOT; };
 		E2B7F22F1C36E6D800945232 /* libRNNotificationActions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNNotificationActions.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B7F23B1C36E76100945232 /* RNNotificationActions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNNotificationActions.h; sourceTree = SOURCE_ROOT; };
 		E2B7F23C1C36E76100945232 /* RNNotificationActions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNNotificationActions.m; sourceTree = SOURCE_ROOT; };
@@ -60,6 +63,8 @@
 			children = (
 				E2B7F23B1C36E76100945232 /* RNNotificationActions.h */,
 				E2B7F23C1C36E76100945232 /* RNNotificationActions.m */,
+				5D1251B21CB6130700A4BC7A /* RNNotificationActionsManager.h */,
+				5D1251B31CB6130700A4BC7A /* RNNotificationActionsManager.m */,
 			);
 			path = RNNotificationActions;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D1251B41CB6130700A4BC7A /* RNNotificationActionsManager.m in Sources */,
 				E2B7F23D1C36E76100945232 /* RNNotificationActions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

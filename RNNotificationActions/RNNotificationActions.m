@@ -1,5 +1,6 @@
 @import UIKit;
 #import "RNNotificationActions.h"
+#import "RNNotificationActionsManager.h"
 
 #import "RCTBridge.h"
 #import "RCTConvert.h"
@@ -41,7 +42,6 @@ RCT_EXPORT_MODULE();
 - (id)init
 {
     if (self = [super init]) {
-        self.completeCallbacks = [[NSMutableDictionary alloc] init];
         return self;
     } else {
         return nil;
@@ -61,6 +61,13 @@ RCT_EXPORT_MODULE();
                                              selector:@selector(handleNotificationActionReceived:)
                                                  name:RNNotificationActionReceived
                                                object:nil];
+    NSDictionary *lastActionInfo = [RNNotificationActionsManager sharedInstance].lastActionInfo;
+    if(lastActionInfo != nil) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:RNNotificationActionReceived
+                                                            object:self
+                                                          userInfo:lastActionInfo];
+        [RNNotificationActionsManager sharedInstance].lastActionInfo = nil;
+    }
 }
 
 - (UIMutableUserNotificationAction *)actionFromJSON:(NSDictionary *)opts
@@ -111,20 +118,28 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:types categories:[NSSet setWithArray:categories]]];
 }
 
+RCT_EXPORT_METHOD(callCompletionHandler)
+{
+    void (^completionHandler)() = [RNNotificationActionsManager sharedInstance].lastCompletionHandler;
+    if(completionHandler != nil) {
+        completionHandler();
+        [RNNotificationActionsManager sharedInstance].lastCompletionHandler = nil;
+    }
+}
+
+
 // Handle notifications received by the app delegate and passed to the following class methods
 + (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler;
 {
-    [self emitNotificationActionForIdentifier:identifier source:@"local" responseInfo:responseInfo userInfo:notification.userInfo];
-    completionHandler();
+    [self emitNotificationActionForIdentifier:identifier source:@"local" responseInfo:responseInfo userInfo:notification.userInfo completionHandler:completionHandler];
 }
 
 + (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo withResponseInfo:(NSDictionary *)responseInfo completionHandler:(void (^)())completionHandler
 {
-    [self emitNotificationActionForIdentifier:identifier source:@"remote" responseInfo:responseInfo userInfo:userInfo];
-    completionHandler();
+    [self emitNotificationActionForIdentifier:identifier source:@"remote" responseInfo:responseInfo userInfo:userInfo completionHandler:completionHandler];
 }
 
-+ (void)emitNotificationActionForIdentifier:(NSString *)identifier source:(NSString *)source responseInfo:(NSDictionary *)responseInfo userInfo:(NSDictionary *)userInfo
++ (void)emitNotificationActionForIdentifier:(NSString *)identifier source:(NSString *)source responseInfo:(NSDictionary *)responseInfo userInfo:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
 {
     NSMutableDictionary *info = [[NSMutableDictionary alloc] initWithDictionary:@{
                                                                                   @"identifier": identifier,
@@ -144,6 +159,8 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
     [[NSNotificationCenter defaultCenter] postNotificationName:RNNotificationActionReceived
                                                         object:self
                                                       userInfo:info];
+    [RNNotificationActionsManager sharedInstance].lastActionInfo = info;
+    [RNNotificationActionsManager sharedInstance].lastCompletionHandler = completionHandler;
 }
 
 - (void)handleNotificationActionReceived:(NSNotification *)notification
