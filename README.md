@@ -19,10 +19,10 @@ The basic workflow is:
 # Install
 
 ### rnpm (preferred)
-`rnpm install react-native-ios-push-notification-actions`
+`rnpm install react-native-ios-notification-actions`
 
 ### Manual
-1. `npm install react-native-ios-push-notification-actions`
+1. `npm install react-native-ios-notification-actions`
 2. Drag `./RNNotificationActions/RNNotificationActions.xcodeproj` into your project.
 3. Add `libRNNotificationActions.a` to your `Link Binary With Libraries` build phase
 
