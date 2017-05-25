@@ -1,13 +1,13 @@
-# react-native-ios-notification-actions
-
-![locked](https://zippy.gfycat.com/VibrantKaleidoscopicCrownofthornsstarfish.gif)
-![unlocked](https://fat.gfycat.com/GrandTightEquestrian.gif)
-
 # looking for a maintainer
 
 I'm not actively maintaining this, so use it at your own risk and make sure to check the open issues.
 
 If you're interested in maintaining this repo, drop me a line at: hello(at)alonso.io
+
+# react-native-ios-notification-actions
+
+![locked](https://zippy.gfycat.com/VibrantKaleidoscopicCrownofthornsstarfish.gif)
+![unlocked](https://fat.gfycat.com/GrandTightEquestrian.gif)
 
 # tl;dr
 
