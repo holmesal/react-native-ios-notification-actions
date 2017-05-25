@@ -3,6 +3,12 @@
 ![locked](https://zippy.gfycat.com/VibrantKaleidoscopicCrownofthornsstarfish.gif)
 ![unlocked](https://fat.gfycat.com/GrandTightEquestrian.gif)
 
+# looking for a maintainer
+
+I'm not actively maintaining this, so use it at your own risk and make sure to check the open issues.
+
+If you're interested in maintaining this repo, drop me a line at: hello(at)alonso.io
+
 # tl;dr
 
 Notification **Actions** allow the user to interact with the push notification. Those shiny buttons that show up when you swipe a notification to the left on your lock screen, or pull down a notification that appears on the top of the screen? Each one of those buttons is an action.
