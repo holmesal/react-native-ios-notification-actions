@@ -75,7 +75,10 @@ RCT_EXPORT_MODULE();
     UIMutableUserNotificationAction *action;
     action = [[UIMutableUserNotificationAction alloc] init];
     [action setActivationMode: [RCTConvert UIUserNotificationActivationMode:opts[@"activationMode"]]];
-    [action setBehavior: [RCTConvert UIUserNotificationActionBehavior:opts[@"behavior"]]];
+
+    if ([action respondsToSelector:@selector(setBehavior:)]) {
+        [action setBehavior: [RCTConvert UIUserNotificationActionBehavior:opts[@"behavior"]]];
+    }
     [action setTitle:opts[@"title"]];
     [action setIdentifier:opts[@"identifier"]];
     [action setDestructive:[RCTConvert BOOL:opts[@"destructive"]]];
