@@ -115,7 +115,9 @@ RCT_EXPORT_METHOD(updateCategories:(NSArray *)json)
     UIUserNotificationType types = settings.types;
     
     // Update the settings for these types
-    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:types categories:[NSSet setWithArray:categories]]];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:types categories:[NSSet setWithArray:categories]]];
+    });
 }
 
 RCT_EXPORT_METHOD(callCompletionHandler)
