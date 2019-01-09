@@ -169,4 +169,9 @@ RCT_EXPORT_METHOD(callCompletionHandler)
                                              body:notification.userInfo];
 }
 
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
 @end
