@@ -80,7 +80,7 @@ let commentTextButton = new NotificationActions.Action({
 let myCategory = new NotificationActions.Category({
   identifier: 'something_happened',
   actions: [upvoteButton, commentTextButton],
-  forContext: 'default'
+  context: 'default'
 });
 
 // ** important ** update the categories
